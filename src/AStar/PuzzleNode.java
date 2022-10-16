@@ -60,15 +60,15 @@ public class PuzzleNode implements Comparable<PuzzleNode> {
     public void printPuzzle() {
         System.out.print(puzzle.get(0)==0 ? "  ": puzzle.get(0) + " ");
         System.out.print(puzzle.get(1)==0 ? "  ": puzzle.get(1) + " ");
-        System.out.print(puzzle.get(2)==0 ? "  ": puzzle.get(2) + " " +"\n");
+        System.out.print(puzzle.get(2)==0 ? "  \n": puzzle.get(2) + " " +"\n");
 
         System.out.print(puzzle.get(3)==0 ? "  ": puzzle.get(3) + " ");
         System.out.print(puzzle.get(4)==0 ? "  ": puzzle.get(4) + " ");
-        System.out.print(puzzle.get(5)==0 ? "  ": puzzle.get(5) + " " +"\n");
+        System.out.print(puzzle.get(5)==0 ? "  \n": puzzle.get(5) + " " +"\n");
 
         System.out.print(puzzle.get(6)==0 ? "  ": puzzle.get(6) + " ");
         System.out.print(puzzle.get(7)==0 ? "  ": puzzle.get(7) + " ");
-        System.out.print(puzzle.get(8)==0 ? "  ": puzzle.get(8) + " " +"\n");
+        System.out.print(puzzle.get(8)==0 ? "  \n": puzzle.get(8) + " " +"\n");
     }
 
 
@@ -104,6 +104,7 @@ public class PuzzleNode implements Comparable<PuzzleNode> {
     //Setter
 
     public void setNeighbors() {
+        neighbors.clear();
         switch (nullInteger) {
             case 0 -> {
                 PuzzleNode neighborDown = new PuzzleNode(swapDown(),this);
@@ -211,6 +212,22 @@ public class PuzzleNode implements Comparable<PuzzleNode> {
         return tempPuzzle;
     }
 
+
+    public void randomize(Integer swaps){
+        setNeighbors();
+        Random random = new Random();
+        int neighborcount ;
+        PuzzleNode newPuzzleNode;
+
+        for (int i = 0; i < swaps; i++) {
+            neighborcount = neighbors.size();
+            int x = Math.abs(random.nextInt())%neighborcount;
+            newPuzzleNode = neighbors.get(x);
+            puzzle = newPuzzleNode.getPuzzle();
+            nullInteger = puzzle.indexOf(0);
+            setNeighbors();
+        }
+    }
 
     public void printPath(){
         System.out.println("Step: " + (this.getDepth()));

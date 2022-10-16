@@ -13,6 +13,7 @@ public class ManhattenHeuristic implements Heuristic<PuzzleNode>{
         8 0 4
         7 6 5
          */
+        /*
         goalIndex.put(1,0);
         goalIndex.put(2,1);
         goalIndex.put(3,2);
@@ -22,6 +23,16 @@ public class ManhattenHeuristic implements Heuristic<PuzzleNode>{
         goalIndex.put(7,6);
         goalIndex.put(8,3);
         goalIndex.put(0,4);
+         */
+        goalIndex.put(1,0);
+        goalIndex.put(2,1);
+        goalIndex.put(3,2);
+        goalIndex.put(4,3);
+        goalIndex.put(5,4);
+        goalIndex.put(6,5);
+        goalIndex.put(7,6);
+        goalIndex.put(8,7);
+        goalIndex.put(0,8);
     }
 
     @Override

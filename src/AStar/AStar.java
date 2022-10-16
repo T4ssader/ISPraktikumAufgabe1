@@ -25,6 +25,8 @@ public class AStar {
         if(!checkIfSolvable(startingPuzzle)){
             throw new IllegalArgumentException("Invalid starting Puzzle, not solvable!");
         }
+
+
         startingPuzzle.setG(0);
         startingPuzzle.setF(startingPuzzle.getG() + heuristic.getH(startingPuzzle));
         startingPuzzle.setNeighbors();
@@ -66,17 +68,17 @@ public class AStar {
         return null;
     }
 
-    private boolean checkIfSolvable(PuzzleNode puzzle) {
+    public boolean checkIfSolvable(PuzzleNode puzzle) {
         int inversionCount = 0;
         List<Integer> puzzleList = puzzle.getPuzzle();
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9-1; i++) {
             for (int j = i + 1; j < 9; j++) {
                 if (puzzleList.get(i) > puzzleList.get(j)) {
                     inversionCount++;
                 }
             }
         }
-        return inversionCount % 2 != 0;
+        return inversionCount % 2 == 0;
     }
 
     public Integer getStepsRequired() {

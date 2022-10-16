@@ -24,46 +24,57 @@ public class TestAStar {
     @BeforeEach
     public void initialize() {
 
-
         //GOAL PUZZLE INITIALIZATION
         List<Integer> goalList = new ArrayList<>();
 
         goalList.add(1);
         goalList.add(2);
         goalList.add(3);
+        goalList.add(4);
+        goalList.add(5);
+        goalList.add(6);
+        goalList.add(7);
         goalList.add(8);
         goalList.add(0);
-        goalList.add(4);
-        goalList.add(7);
-        goalList.add(6);
-        goalList.add(5);
         goalPuzzle = new PuzzleNode(goalList, null);
 
         //SIMPLE PUZZLE INITIALIZATION
         List<Integer> simpleList = new ArrayList<>();
 
-        simpleList.add(0);
-        simpleList.add(2);
-        simpleList.add(3);
-        simpleList.add(1);
+
         simpleList.add(8);
-        simpleList.add(4);
-        simpleList.add(7);
         simpleList.add(6);
+        simpleList.add(7);
+        simpleList.add(2);
         simpleList.add(5);
+        simpleList.add(3);
+        simpleList.add(4);
+        simpleList.add(0);
+        simpleList.add(1);
+
+
+//        simpleList.add(0);
+//        simpleList.add(4);
+//        simpleList.add(1);
+//        simpleList.add(7);
+//        simpleList.add(6);
+//        simpleList.add(2);
+//        simpleList.add(5);
+//        simpleList.add(8);
+//        simpleList.add(3);
         simplePuzzle = new PuzzleNode(simpleList, null);
 
 
         //DIFFICULT PUZZLE INITIALIZATION
         List<Integer> difficultList = new ArrayList<>();
-        difficultList.add(8);
-        difficultList.add(3);
-        difficultList.add(5);
+        difficultList.add(7);
         difficultList.add(4);
         difficultList.add(1);
-        difficultList.add(6);
+        difficultList.add(5);
         difficultList.add(2);
-        difficultList.add(7);
+        difficultList.add(8);
+        difficultList.add(6);
+        difficultList.add(3);
         difficultList.add(0);
         difficultPuzzle = new PuzzleNode(difficultList, null);
 
@@ -72,12 +83,12 @@ public class TestAStar {
         unsolvableList.add(1);
         unsolvableList.add(2);
         unsolvableList.add(3);
-        unsolvableList.add(8);
-        unsolvableList.add(0);
         unsolvableList.add(4);
-        unsolvableList.add(7);
         unsolvableList.add(5);
         unsolvableList.add(6);
+        unsolvableList.add(8);
+        unsolvableList.add(7);
+        unsolvableList.add(0);
         unsolvablePuzzle = new PuzzleNode(unsolvableList, null);
     }
 
@@ -113,13 +124,12 @@ public class TestAStar {
 
 
     @Test
-    public void testBasicPuzzle() {
+    public void testSimplePuzzle() {
         ManhattenHeuristic heuristic1 = new ManhattenHeuristic();
-
         AStar aStar = new AStar(simplePuzzle, heuristic1);
         PuzzleNode resultPuzzle = aStar.calculatePath(goalPuzzle);
         resultPuzzle.printPath();
-        Assertions.assertEquals(2, resultPuzzle.getDepth());
+        Assertions.assertEquals(14, resultPuzzle.getDepth());
     }
 
 
@@ -129,44 +139,40 @@ public class TestAStar {
         ManhattenHeuristic heuristic1 = new ManhattenHeuristic();
 
         AStar aStar = new AStar(difficultPuzzle, heuristic1);
+
         PuzzleNode resultPuzzle = aStar.calculatePath(goalPuzzle);
         resultPuzzle.printPath();
 
-        Assertions.assertEquals(14, resultPuzzle.getDepth());
+        Assertions.assertEquals(20, resultPuzzle.getDepth());
     }
 
 
     @Test
-    public void testUnsolvablePuzzle(){
+    public void testUnsolvablePuzzle() {
         ManhattenHeuristic heuristic1 = new ManhattenHeuristic();
 
         AStar aStar = new AStar(unsolvablePuzzle, heuristic1);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> aStar.calculatePath(goalPuzzle));
     }
+
+
 //    @Test
-//    public void testIncorrectHeuristic() {
-//        IncorrectSimpleHeuristic heuristic = new IncorrectSimpleHeuristic();
+//    public void testRandomizedSolving() {
+//        ManhattenHeuristic manhattenHeuristic = new ManhattenHeuristic();
 //
-//        AStar aStar = new AStar(difficultPuzzle, heuristic);
-//        PuzzleNode resultPuzzle = aStar.calculatePath(goalPuzzle);
-//        resultPuzzle.printPath();
-//
-//        Assertions.assertEquals(14, resultPuzzle.getDepth());
+//        for (int i = 0; i < 1; i++) {
+//            simple.randomize(20);
+//            difficultPuzzle.printPuzzle();
+//            AStar aStar = new AStar(difficultPuzzle, manhattenHeuristic);
+//            PuzzleNode resultPuzzle = aStar.calculatePath(goalPuzzle);
+//            System.out.println("Expected: ");
+//            goalPuzzle.printPuzzle();
+//            System.out.println("\nResult:");
+//            resultPuzzle.printPuzzle();
+//            Assertions.assertEquals(goalPuzzle, resultPuzzle);
+//        }
 //    }
-
-
-    @Test
-    public void testIncorrectHeuristic() {
-        IncorrectSimpleHeuristic heuristic = new IncorrectSimpleHeuristic();
-
-        AStar aStar = new AStar(difficultPuzzle, heuristic);
-        PuzzleNode resultPuzzle = aStar.calculatePath(goalPuzzle);
-        resultPuzzle.printPath();
-
-        Assertions.assertEquals(14, resultPuzzle.getDepth());
-    }
-
 
     @Test
     public void testCompareHeuristics() {
