@@ -1,3 +1,5 @@
+package AStar;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -6,6 +8,11 @@ public class ManhattenHeuristic implements Heuristic<PuzzleNode>{
     HashMap<Integer,Integer> goalIndex = new HashMap<>();
 
     public ManhattenHeuristic() {
+        /*
+        1 2 3
+        8 0 4
+        7 6 5
+         */
         goalIndex.put(1,0);
         goalIndex.put(2,1);
         goalIndex.put(3,2);
@@ -14,7 +21,6 @@ public class ManhattenHeuristic implements Heuristic<PuzzleNode>{
         goalIndex.put(6,7);
         goalIndex.put(7,6);
         goalIndex.put(8,3);
-
         goalIndex.put(0,4);
     }
 

@@ -1,5 +1,6 @@
+package AStar;
+
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class PuzzleNode implements Comparable<PuzzleNode> {
 
@@ -17,7 +18,7 @@ public class PuzzleNode implements Comparable<PuzzleNode> {
     private PuzzleNode parent;
 
 
-    PuzzleNode(List<Integer> puzzle,PuzzleNode parent) {
+    public PuzzleNode(List<Integer> puzzle,PuzzleNode parent) {
         this.puzzle = puzzle;
         this.nullInteger = puzzle.indexOf(0);
         this.f = Integer.MAX_VALUE;
@@ -57,9 +58,17 @@ public class PuzzleNode implements Comparable<PuzzleNode> {
     }
 
     public void printPuzzle() {
-        System.out.println(puzzle.get(0) + " " + puzzle.get(1) + " " + puzzle.get(2));
-        System.out.println(puzzle.get(3) + " " + puzzle.get(4) + " " + puzzle.get(5));
-        System.out.println(puzzle.get(6) + " " + puzzle.get(7) + " " + puzzle.get(8));
+        System.out.print(puzzle.get(0)==0 ? "  ": puzzle.get(0) + " ");
+        System.out.print(puzzle.get(1)==0 ? "  ": puzzle.get(1) + " ");
+        System.out.print(puzzle.get(2)==0 ? "  ": puzzle.get(2) + " " +"\n");
+
+        System.out.print(puzzle.get(3)==0 ? "  ": puzzle.get(3) + " ");
+        System.out.print(puzzle.get(4)==0 ? "  ": puzzle.get(4) + " ");
+        System.out.print(puzzle.get(5)==0 ? "  ": puzzle.get(5) + " " +"\n");
+
+        System.out.print(puzzle.get(6)==0 ? "  ": puzzle.get(6) + " ");
+        System.out.print(puzzle.get(7)==0 ? "  ": puzzle.get(7) + " ");
+        System.out.print(puzzle.get(8)==0 ? "  ": puzzle.get(8) + " " +"\n");
     }
 
 
@@ -200,6 +209,16 @@ public class PuzzleNode implements Comparable<PuzzleNode> {
         List<Integer> tempPuzzle = new ArrayList<>(puzzle);
         Collections.swap(tempPuzzle, nullInteger, nullInteger - 1);
         return tempPuzzle;
+    }
+
+
+    public void printPath(){
+        System.out.println("Step: " + (this.getDepth()));
+        this.printPuzzle();
+        System.out.println("\n\n\n");
+        if(this.parent!=null){
+            this.parent.printPath();
+        }
     }
 
     @Override
