@@ -41,27 +41,15 @@ public class TestAStar {
         //SIMPLE PUZZLE INITIALIZATION
         List<Integer> simpleList = new ArrayList<>();
 
-
-        simpleList.add(8);
-        simpleList.add(6);
+        simpleList.add(0);
+        simpleList.add(4);
+        simpleList.add(1);
         simpleList.add(7);
+        simpleList.add(6);
         simpleList.add(2);
         simpleList.add(5);
+        simpleList.add(8);
         simpleList.add(3);
-        simpleList.add(4);
-        simpleList.add(0);
-        simpleList.add(1);
-
-
-//        simpleList.add(0);
-//        simpleList.add(4);
-//        simpleList.add(1);
-//        simpleList.add(7);
-//        simpleList.add(6);
-//        simpleList.add(2);
-//        simpleList.add(5);
-//        simpleList.add(8);
-//        simpleList.add(3);
         simplePuzzle = new PuzzleNode(simpleList, null);
 
 
