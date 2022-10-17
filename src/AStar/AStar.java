@@ -50,15 +50,6 @@ public class AStar {
                     neighbor.setNeighbors();
                     openList.add(neighbor);
 
-                } else {
-                    if (weight < neighbor.getG()) {
-                        neighbor.setG(weight);
-                        neighbor.setF(neighbor.getG() + heuristic.getH(neighbor));
-                        if (closedList.contains(neighbor)) {
-                            closedList.remove(neighbor);
-                            openList.add(neighbor);
-                        }
-                    }
                 }
             }
 

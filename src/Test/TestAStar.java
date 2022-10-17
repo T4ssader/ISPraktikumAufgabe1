@@ -145,22 +145,20 @@ public class TestAStar {
     }
 
 
-//    @Test
-//    public void testRandomizedSolving() {
-//        ManhattenHeuristic manhattenHeuristic = new ManhattenHeuristic();
-//
-//        for (int i = 0; i < 1; i++) {
-//            simple.randomize(20);
-//            difficultPuzzle.printPuzzle();
-//            AStar aStar = new AStar(difficultPuzzle, manhattenHeuristic);
-//            PuzzleNode resultPuzzle = aStar.calculatePath(goalPuzzle);
-//            System.out.println("Expected: ");
-//            goalPuzzle.printPuzzle();
-//            System.out.println("\nResult:");
-//            resultPuzzle.printPuzzle();
-//            Assertions.assertEquals(goalPuzzle, resultPuzzle);
-//        }
-//    }
+    @Test
+    public void testRandomizedSolving() {
+        ManhattenHeuristic manhattenHeuristic = new ManhattenHeuristic();
+
+        for (int i = 0; i < 1; i++) {
+            simplePuzzle.randomize(20);
+            difficultPuzzle.printPuzzle();
+            AStar aStar = new AStar(difficultPuzzle, manhattenHeuristic);
+            PuzzleNode resultPuzzle = aStar.calculatePath(goalPuzzle);
+            System.out.println("\nResult:");
+            resultPuzzle.printPath();
+            Assertions.assertEquals(goalPuzzle, resultPuzzle);
+        }
+    }
 
     @Test
     public void testCompareHeuristics() {
